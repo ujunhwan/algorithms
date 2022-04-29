@@ -109,22 +109,13 @@ def right_move(y, x, state):
         if is_valid_pos(up):
             if not wall[pos][0] and not wall[up][1]:
                 return True
-        # if is_valid(y-1, x) and is_valid(y-1, x+1):
-            # if not wall[(y-1)*C+x][1] and not wall[(y-1)*C+(x+1)][0]:
-            #     return True
     elif state == 1:
-        # if is_valid(y, x+1):
         if not wall[pos][1]:
             return True
-            # if not wall[y*C+(x+1)][0]:
-            #     return True
     else:
-        # if is_valid(y+1, x+1) and is_valid(y+1, x):
         if is_valid_pos(down):
             if not wall[down][0] and not wall[down][1]:
                 return True
-            # if not wall[(y+1)*C+(x+1)][0] and not wall[(y+1)*C+x][1]:
-            #     return True
     return False
 
 def left_move(y, x, state):
@@ -139,10 +130,6 @@ def left_move(y, x, state):
     down_left = (y+1)*C+(x-1)
 
     if state == 0:
-        # if is_valid(y-1, x) and is_valid(y-1, x-1):
-        #     if not wall[(y-1)*C+x][0] and not wall[(y-1)*C+x][1]:
-        #         return True
-        
         if is_valid_pos(up_left):
             if not wall[pos][0] and not wall[up_left][1]:
                 return True
@@ -150,13 +137,7 @@ def left_move(y, x, state):
         if is_valid_pos(left):
             if not wall[left][1]:
                 return True
-        # if is_valid(y, x-1):
-        #     if not wall[y*C+x][0]:
-        #         return True
     else:
-        # if is_valid(y+1, x) and is_valid(y, x):
-        #     if not wall[(y+1)*C+x][0] and not wall[y*C+x][1]:
-        #         return True
         if is_valid_pos(down) and is_valid_pos(down_left):
             if not wall[down][0] and not wall[down_left][1]:
                 return True
@@ -174,23 +155,14 @@ def down_move(y, x, state):
     down_left = (y+1)*C+(x-1)
 
     if state == 0:
-        # if is_valid(y, x-1) and is_valid(y+1, x-1):
-        #     if not wall[y*C+x][0] and not wall[y*C+(x-1)][1]:
-        #         return True
         if is_valid_pos(left) and is_valid_pos(down_left):
             if not wall[left][1] and not wall[down_left][0]:
                 return True
     elif state == 1:
-        # if is_valid(y+1, x):
-        #     if not wall[y*C+x][1]:
-        #         return True
         if is_valid_pos(down):
             if not wall[down][0]:
                 return True
     else:
-        # if is_valid(y, x+1) and is_valid(y+1, x+1):
-        #     if not wall[y*C+(x+1)][0] and not wall[y*C+(x+1)][1]:
-        #         return True
         if is_valid_pos(down_right):
             if not wall[pos][1] and not wall[down_right][0]:
                 return True
@@ -208,28 +180,18 @@ def up_move(y, x, state):
     down_left = (y+1)*C+(x-1)
 
     if state == 0:
-        # if is_valid(y, x-1) and is_valid(y-1, x-1):
-        #     if not wall[y*C+x][0] and not wall[(y-1)*C+(x-1)][1]:
-        #         return True
         if is_valid_pos(left):
             if not wall[left][1] and not wall[left][0]:
                 return True
     elif state == 1:
-        # if is_valid(y-1, x):
-        #     if not wall[(y-1)*C+x][1]:
-        #         return True
         if not wall[pos][0]:
             return True
     else:
-        # if is_valid(y-1, x+1) and is_valid(y, x+1):
-        #     if not wall[y*C+(x+1)][0] and not wall[(y-1)*C+(x+1)][1]:
-        #         return True
         if is_valid_pos(right):
             if not wall[pos][1] and not wall[right][0]:
                 return True
     return False
 
-# lazy = [[0 for col in range(C)] for row in range(R)]
 def inc_temp(y, x, dir):
     '''
     어떤 칸 (x, y)에 온풍기 바람이 도착해 온도가 k (> 1)만큼 상승했다면, 
